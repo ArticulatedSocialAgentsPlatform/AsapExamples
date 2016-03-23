@@ -1,17 +1,5 @@
 package asap.realizerdemo;
 
-import hmi.animation.VJoint;
-import hmi.audioenvironment.AudioEnvironment;
-import hmi.environmentbase.Environment;
-import hmi.jcomponentenvironment.JComponentEnvironment;
-import hmi.mixedanimationenvironment.MixedAnimationEnvironment;
-import hmi.physicsenvironment.OdePhysicsEnvironment;
-import hmi.renderenvironment.HmiRenderEnvironment;
-import hmi.renderenvironment.HmiRenderEnvironment.RenderStyle;
-import hmi.util.Console;
-import hmi.worldobjectenvironment.VJointWorldObject;
-import hmi.worldobjectenvironment.WorldObjectEnvironment;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -24,13 +12,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import asap.bml.ext.bmlt.BMLTInfo;
+import asap.environment.AsapEnvironment;
+import hmi.animation.VJoint;
+import hmi.audioenvironment.AudioEnvironment;
+import hmi.environmentbase.Environment;
+import hmi.jcomponentenvironment.JComponentEnvironment;
+import hmi.mixedanimationenvironment.MixedAnimationEnvironment;
+import hmi.physicsenvironment.OdePhysicsEnvironment;
+import hmi.renderenvironment.HmiRenderEnvironment;
+import hmi.renderenvironment.HmiRenderEnvironment.RenderStyle;
+import hmi.util.Console;
+import hmi.worldobjectenvironment.VJointWorldObject;
+import hmi.worldobjectenvironment.WorldObjectEnvironment;
 import saiba.bml.BMLInfo;
 import saiba.bml.core.FaceLexemeBehaviour;
 import saiba.bml.core.HeadBehaviour;
 import saiba.bml.core.PostureShiftBehaviour;
-import asap.bml.ext.bmlt.BMLTInfo;
-import asap.environment.AsapEnvironment;
-import asap.environment.AsapVirtualHuman;
 
 /**
  * Simple demo for the AsapRealizer+environment
@@ -189,7 +187,9 @@ public class AsapRealizerDemo
     public static void main(String[] args) throws IOException
     {
         // examples for conversational animation seminar:
-        //String spec = "asaparmandia.xml";
+        //String spec = "asaparmandia_motionsamples.xml";
+        
+        //visual prosody
         String spec = "asaparmandia_vp.xml";        
 
         if (args.length == 1)

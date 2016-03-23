@@ -1,0 +1,8 @@
+<bml id="bml1" xmlns="http://www.bml-initiative.org/bml/bml-1.0">
+	<postureShift id="pose1" start="3" xmlns:convanim="http://asap-project.org/convanim" convanim:amount="10">
+		<stance type="STANDING"/>		
+		<pose part="SPINE" lexeme="WIGGLY"/>
+	</postureShift>	
+</bml>
+
+

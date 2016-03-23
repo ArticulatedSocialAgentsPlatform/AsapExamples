@@ -64,10 +64,8 @@ public class WigglySpinePosture implements RestPose
     @Override
     public void play(double time, Set<String> kinematicJoints, Set<String> physicalJoints)
     {
-        System.out.println("play wiggly spine "+wigglyJointId);
-        if (kinematicJoints.contains(wigglyJointId))
+        if (!kinematicJoints.contains(wigglyJointId))
         {
-            System.out.println("really play wiggly spine ");
             double t = time - startTime;
             VJoint vj = aniPlayer.getVNext().getPart(wigglyJointId);
             float q[] = Quat4f.getQuat4f();

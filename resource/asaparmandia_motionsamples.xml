@@ -1,0 +1,160 @@
+<AsapVirtualHuman id="Armandia">
+  <Loader id="realizer" loader="asap.realizerembodiments.AsapRealizerEmbodiment">
+    <BMLParser>
+      <BMLAttributeExtension class="asap.bml.ext.bmla.BMLABMLBehaviorAttributes"/>      
+    </BMLParser>
+	
+    <BMLScheduler>
+      <SchedulingHandler class="asap.realizer.scheduler.BMLASchedulingHandler" schedulingStrategy="asap.realizer.scheduler.SortedSmartBodySchedulingStrategy"/>
+    </BMLScheduler>
+    <PipeLoader id="visualizerpipe" loader="asap.bmlflowvisualizer.loader.AsapBMLFlowVisualizerPortLoader"/>
+  </Loader>
+
+
+  <Loader id="guiembodiment" loader="asap.realizerembodiments.JFrameEmbodiment">
+    <BmlUI demoscriptresources="bml1.0/defaultexamples"/>
+    <FeedbackUI/>    
+    <!--KillButton/-->
+  </Loader>
+	
+    <Loader id="frame1" loader="hmi.jcomponentenvironment.loader.JFrameLoader"><JFrame title="BML flow visualization" width="1024" height="768"/></Loader>
+    <Loader id="bmlvisuipanel" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
+        <JComponent id="frame1"/>             
+    </Loader>
+    
+    <Loader id="bmlvisui" loader="asap.bmlflowvisualizer.loader.BMLFlowVisualizaterSwingUILoader" requiredloaders="bmlvisuipanel"/>
+
+<Loader id="panelembodiment" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
+  <JComponent id="textpanel"/>             
+</Loader>
+    <Loader id="textembodiment" loader="asap.textengine.JLabelTextEmbodiment" requiredloaders="panelembodiment"/>
+    <Loader id="textengine" loader="asap.textengine.loader.TextEngineLoader" requiredloaders="textembodiment"/>
+    
+  <Loader id="eyelidmorpher" loader="hmi.faceembodiments.loader.EyelidMorpherLoader">
+    <Morphs ids="Body_NG-mesh-morpher-yeux_NG01-1"/>
+  </Loader>
+  
+  <Loader id="graphicalembodiment" loader="hmi.renderenvironment.HmiRenderEmbodimentLoader" requiredloaders="eyelidmorpher">
+    <Body postprocessing="ARMANDIA" 
+          texturedir="Humanoids/armandia/maps" 
+          resourcedir="Humanoids/armandia/bin"
+	  
+	    
+          filename="armandia_boring_neckfix_light_toplevel.bin"
+	    /> <!-- other possible attributes: shaderdir, ... -->    
+	    <!--filename="armandia_boring_neckfix_dark_toplevel.bin"-->
+	    <!--filename="armandia_simquest.bin"-->
+ 		 
+    <PermanentMorphs>
+        <PermanentMorph target="Body_NG-mesh-morpher-Body_chest_L-0" amount="4.0"/>
+        <PermanentMorph target="Pull_A_-mesh-morpher-_pull01_morph_NG-0" amount="1.7"/> 
+        <PermanentMorph target="Body_NG-mesh-morpher-Face02-18" amount="1"/>
+        <!--PermanentMorph target="T_Shirt_A_-mesh-morpher-tshirt_03_morph-0" amount="1.7"/--> 
+        <!--PermanentMorph target="Body_NG-mesh-morpher-Face01-17" amount="1"/-->  
+        <!-- pull_B_-mesh-morpher-pull_B_morph-0 1.7 -->
+        <!-- T_Shirt_B_-mesh-morpher-tshirt02_morph-0 1.5 -->
+    </PermanentMorphs>
+    <Face>
+        <FapDeform filename="Humanoids/armandia/mpeg4faps/armandia.xml" facemesh="Body_NG-mesh-1"/> <!-- Hmi graphics specific: the mapping from FAPs to mesh. -->
+        <FaceExpressionMorphTargets>      <!-- the morph targets that are available for face expressions -->
+            <Target name="Body_NG-mesh-morpher-A-2"/>
+            <Target name="Body_NG-mesh-morpher-E-5"/>
+            <Target name="Body_NG-mesh-morpher-I-6"/>
+            <Target name="Body_NG-mesh-morpher-U-4"/>
+            <Target name="Body_NG-mesh-morpher-O-3"/>
+            <Target name="Body_NG-mesh-morpher-P_B-8"/>
+            <Target name="Body_NG-mesh-morpher-Hum-19"/>
+            <Target name="Body_NG-mesh-morpher-Wink-20"/>
+            <Target name="Body_NG-mesh-morpher-yeux_NG01-1"/>
+            <Target name="Body_NG-mesh-morpher-F-7"/>
+            <Target name="Body_NG-mesh-morpher-Smile01-9"/>
+            <Target name="Body_NG-mesh-morpher-Pff-10"/>
+            <Target name="Body_NG-mesh-morpher-T_severe-11"/>
+            <Target name="Body_NG-mesh-morpher-T_severe02-12"/>
+            <Target name="Body_NG-mesh-morpher-T_dent-13"/>
+            <Target name="Body_NG-mesh-morpher-T_trist-14"/>
+            <Target name="Body_NG-mesh-morpher-T_trist02-15"/>
+            <Target name="Body_NG-mesh-morpher-HAA-16"/>
+        </FaceExpressionMorphTargets>
+    </Face>
+  </Loader>
+
+  
+  <!-- since we will be using physics and a mixedanimationengine, we need to transform the skeletonembodiment into a mixedskeletonembodiment -->
+  <Loader id="mixedskeletonembodiment" loader="hmi.physicsenvironment.MixedSkeletonEmbodimentLoader" requiredloaders="graphicalembodiment"/>
+  <!-- load the physicalembodiments and connect them to the mixedskeletonembodiment -->
+  <Loader id="physicalembodiment" 
+              loader="hmi.physicsenvironment.OdePhysicalEmbodiment"
+              requiredloaders="mixedskeletonembodiment">
+    <MixedSystems> <!-- preferably, those are generated on the fly from the physical model... but we cannot yet do this :/ -->
+      <MixedSystem name="lowerbody"            
+                   resources="Humanoids/armandia/mixedsystems/" 
+                   filename="armandialowerbody.xml"/> <!-- name is for debugging purposes only! -->
+      <MixedSystem name="lowerbodyandleftarm"  
+                   resources="Humanoids/armandia/mixedsystems/" 
+                   filename="armandialowerbodyandleftarm.xml"/>
+      <MixedSystem name="lowerbodyandrightarm" 
+                   resources="Humanoids/armandia/mixedsystems/" 
+                   filename="armandialowerbodyandrightarm.xml"/>
+      <MixedSystem name="lowerbodyandarms"     
+                   resources="Humanoids/armandia/mixedsystems/" 
+                   filename="armandialowerbodyarms.xml"/>
+    </MixedSystems>
+    <GlueFeetToFloor/>
+  </Loader>
+
+<!--
+  <Loader id="physicsdebug" loader="hmi.debug.PhysicsDebugVisualisationLoader" requiredloaders="physicalembodiment">
+    <Placement offset="0.5 0 -0.5"/>
+  </Loader>
+-->
+  <Loader id="animationengine" 
+          loader="asap.animationengine.loader.MixedAnimationEngineLoader"
+          requiredloaders="mixedskeletonembodiment,physicalembodiment">
+    <GestureBinding basedir="" resources="" filename="gesturebinding_motionsamples.xml"/>
+    <StartPose>
+		<RestPose type="SkeletonPose" file="Humanoids/armandia/restposes/looselyhangingarms.xml"/>
+	</StartPose>
+	<Hns resources="Humanoids/armandia/hns" filename="hns_armandia.xml"/>
+    <HnsHandShape dir="Humanoids/shared/handshapes"/>
+  </Loader>
+  
+  <Loader id="faceengine" 
+          loader="asap.faceengine.loader.FaceEngineLoader"
+          requiredloaders="graphicalembodiment">
+    <FaceBinding basedir="" resources="" filename="facebinding_motionsamples.xml"/>
+  </Loader>
+  
+  <Loader id="facelipsync" requiredloaders="faceengine" loader="asap.realizerdemo.newanimations.SinusMoveLipSyncProviderLoader">
+	<MorphVisemeBinding resources="Humanoids/armandia/facebinding/" filename="ikpvisemebinding.xml"/>
+  </Loader>
+  <Loader id="jawlipsync" requiredloaders="animationengine" loader="asap.animationengine.loader.TimedAnimationUnitLipSynchProviderLoader">
+	<SpeechBinding basedir="" resources="Humanoids/shared/speechbinding/" filename="ikpspeechbinding.xml"/>
+  </Loader>
+
+  <Loader id="ttsbinding" loader="asap.marytts5binding.loader.MaryTTSBindingLoader">
+    <PhonemeToVisemeMapping resources="Humanoids/shared/phoneme2viseme/" filename="sampade2ikp.xml"/>
+  </Loader>
+
+ <Loader id="speechengine" loader="asap.speechengine.loader.SpeechEngineLoader" requiredloaders="facelipsync,jawlipsync,ttsbinding,guiembodiment">
+   <Voice factory="WAV_TTS"/>
+   <SpeechUI/>
+  </Loader>
+
+  <!-- Breathingemitter that sens small breathing animations every now and then -->
+  <Loader id="breathingengine" 
+          loader="asap.emitterengine.loader.EmitterEngineLoader">
+    <EmitterInfo class="asap.breathingemitter.BreathingEmitterInfo"/>
+  </Loader>
+
+  <!-- Blinkemitter that sens small blink animations every now and then -->
+  <Loader id="blinkengine" 
+          loader="asap.emitterengine.loader.EmitterEngineLoader">
+    <EmitterInfo class="asap.blinkemitter.BlinkEmitterInfo"/>
+  </Loader>
+  
+  <!-- Engine for playing audio files, nice for sound effects (e.g., clapping) or for prerecorded speech fragments -->
+  <Loader id="audioengine" loader="asap.audioengine.loader.AudioEngineLoader"/>
+
+  
+</AsapVirtualHuman>
