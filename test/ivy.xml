@@ -1,0 +1,11 @@
+<ivy-module version="2.0">
+   <info organisation="Asap" module="AsapRealizerDemoTest"/>
+   <dependencies >
+      <dependency org="junit" name="junit-dep"  rev="latest.release" />
+      <dependency org="HMI"   name="HmiTestUtil" transitive="false" rev="latest.${resolve.status}"  />
+      <dependency org="fest" name="fest-assert"  rev="latest.release" />
+      <dependency org="fest" name="fest-reflect"  rev="latest.release" />
+      <dependency org="fest" name="fest-swing"  rev="latest.release" />
+      <dependency org="fest" name="fest-util"  rev="latest.release" />
+   </dependencies>
+</ivy-module>
