@@ -1,0 +1,7 @@
+<!--
+Requires emitterengine.
+
+-->
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="bmlgaze" xmlns:bmlt="http://hmi.ewi.utwente.nl/bmlt" xmlns:bmla="http://www.asap-project.org/bmla">
+  <gaze id="gaze1" influence="NECK" bmlt:dynamic="true" start="0" ready="0.5" target="camera" offsetAngle="5" offsetDirection="UPLEFT"/>
+</bml>

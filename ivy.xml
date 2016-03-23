@@ -23,7 +23,7 @@
       <dependency org="HMI"   name="HmiPhysicsEnvironment"     rev="latest.${resolve.status}"   />    
       <dependency org="HMI"   name="HmiWorldObjectEnvironment"     rev="latest.${resolve.status}"   />    
       <dependency org="HMI"   name="HmiAudioEnvironment"     rev="latest.${resolve.status}"   />    
-
+      <dependency org="HMI"   name="HmiDebug"     rev="latest.${resolve.status}"   /> 
 
 
       <dependency org="Asap"   name="AsapBML"     rev="latest.${resolve.status}"   />    

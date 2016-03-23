@@ -7,29 +7,9 @@
     <BMLScheduler>
       <SchedulingHandler class="asap.realizer.scheduler.BMLASchedulingHandler" schedulingStrategy="asap.realizer.scheduler.SortedSmartBodySchedulingStrategy"/>
     </BMLScheduler>
-    <PipeLoader id="visualizerpipe" loader="asap.bmlflowvisualizer.loader.AsapBMLFlowVisualizerPortLoader"/>
   </Loader>
 
 
-  <Loader id="guiembodiment" loader="asap.realizerembodiments.JFrameEmbodiment">
-    <BmlUI demoscriptresources="bml1.0/defaultexamples"/>
-    <FeedbackUI/>    
-    <!--KillButton/-->
-  </Loader>
-	
-    <Loader id="frame1" loader="hmi.jcomponentenvironment.loader.JFrameLoader"><JFrame title="BML flow visualization" width="1024" height="768"/></Loader>
-    <Loader id="bmlvisuipanel" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
-        <JComponent id="frame1"/>             
-    </Loader>
-    
-    <Loader id="bmlvisui" loader="asap.bmlflowvisualizer.loader.BMLFlowVisualizaterSwingUILoader" requiredloaders="bmlvisuipanel"/>
-
-<Loader id="panelembodiment" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
-  <JComponent id="textpanel"/>             
-</Loader>
-    <Loader id="textembodiment" loader="asap.textengine.JLabelTextEmbodiment" requiredloaders="panelembodiment"/>
-    <Loader id="textengine" loader="asap.textengine.loader.TextEngineLoader" requiredloaders="textembodiment"/>
-    
   <Loader id="eyelidmorpher" loader="hmi.faceembodiments.loader.EyelidMorpherLoader">
     <Morphs ids="Body_NG-mesh-morpher-yeux_NG01-1"/>
   </Loader>
@@ -103,11 +83,11 @@
     <GlueFeetToFloor/>
   </Loader>
 
-
+<!--
   <Loader id="physicsdebug" loader="hmi.debug.PhysicsDebugVisualisationLoader" requiredloaders="physicalembodiment">
     <Placement offset="0.5 0 -0.5"/>
   </Loader>
-
+-->
   <Loader id="animationengine" 
           loader="asap.animationengine.loader.MixedAnimationEngineLoader"
           requiredloaders="mixedskeletonembodiment,physicalembodiment">
@@ -141,9 +121,8 @@
     <PhonemeToVisemeMapping resources="Humanoids/shared/phoneme2viseme/" filename="sampade2ikp.xml"/>
   </Loader>
 
- <Loader id="speechengine" loader="asap.speechengine.loader.SpeechEngineLoader" requiredloaders="visualprosody,facelipsync,jawlipsync,ttsbinding,guiembodiment">
-   <Voice factory="WAV_TTS" voicename="dfki-prudence-hsmm"/>	
-   <SpeechUI/>
+ <Loader id="speechengine" loader="asap.speechengine.loader.SpeechEngineLoader" requiredloaders="visualprosody,facelipsync,jawlipsync,ttsbinding">
+   <Voice factory="WAV_TTS" voicename="dfki-prudence-hsmm"/>	   
   </Loader>
 
   <!-- Breathingemitter that sens small breathing animations every now and then -->

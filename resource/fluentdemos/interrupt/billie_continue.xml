@@ -1,0 +1,6 @@
+<bml id="bml1" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmlt="http://hmi.ewi.utwente.nl/bmlt">
+	<speech id = "continue">
+		<text><sync id="s1"/>Please let me  continue</text>
+	</speech>
+	<gesture id="g1" lexeme="BEAT" mode="LEFT_HAND" stroke="continue:s1"/>
+</bml>

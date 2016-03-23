@@ -1,0 +1,7 @@
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="bml1" xmlns:bmlt="http://hmi.ewi.utwente.nl/bmlt">
+	<postureShift id="pose1">
+		<stance type="STANDING"/>
+		<pose part="LEGS" lexeme="LEGS_OPEN"/>
+	</postureShift>
+
+</bml>

@@ -1,0 +1,13 @@
+<bml id="bml1" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmlt="http://hmi.ewi.utwente.nl/bmlt">
+	<!--
+	<postureShift id="pose1">
+		<stance type="STANDING"/>
+		<pose part="LEGS" lexeme="LEGS_OPEN"/>
+	</postureShift>	
+	<speech id = "welkom" start="pose1:end+5">
+	-->
+	<speech id = "welkom" start="7">
+	  <text>Welcome! I am Griet, I am 16 year old and I would like to tell you something about <sync id="deicticheart1"/>my life. People know me as the girl with the pearl earring.</text>
+	</speech>
+	<gesture id="g1" lexeme="greta_deictic_self" mode="RIGHT_HAND" stroke="welkom:deicticheart1"/>
+</bml>

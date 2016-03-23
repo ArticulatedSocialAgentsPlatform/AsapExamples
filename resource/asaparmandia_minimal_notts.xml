@@ -6,30 +6,10 @@
 	
     <BMLScheduler>
       <SchedulingHandler class="asap.realizer.scheduler.BMLASchedulingHandler" schedulingStrategy="asap.realizer.scheduler.SortedSmartBodySchedulingStrategy"/>
-    </BMLScheduler>
-    <PipeLoader id="visualizerpipe" loader="asap.bmlflowvisualizer.loader.AsapBMLFlowVisualizerPortLoader"/>
+    </BMLScheduler>    
   </Loader>
 
 
-  <Loader id="guiembodiment" loader="asap.realizerembodiments.JFrameEmbodiment">
-    <BmlUI demoscriptresources="bml1.0/defaultexamples"/>
-    <FeedbackUI/>    
-    <!--KillButton/-->
-  </Loader>
-	
-    <Loader id="frame1" loader="hmi.jcomponentenvironment.loader.JFrameLoader"><JFrame title="BML flow visualization" width="1024" height="768"/></Loader>
-    <Loader id="bmlvisuipanel" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
-        <JComponent id="frame1"/>             
-    </Loader>
-    
-    <Loader id="bmlvisui" loader="asap.bmlflowvisualizer.loader.BMLFlowVisualizaterSwingUILoader" requiredloaders="bmlvisuipanel"/>
-
-<Loader id="panelembodiment" loader="hmi.jcomponentenvironment.loader.JComponentEmbodimentLoader">
-  <JComponent id="textpanel"/>             
-</Loader>
-    <Loader id="textembodiment" loader="asap.textengine.JLabelTextEmbodiment" requiredloaders="panelembodiment"/>
-    <Loader id="textengine" loader="asap.textengine.loader.TextEngineLoader" requiredloaders="textembodiment"/>
-    
   <Loader id="eyelidmorpher" loader="hmi.faceembodiments.loader.EyelidMorpherLoader">
     <Morphs ids="Body_NG-mesh-morpher-yeux_NG01-1"/>
   </Loader>
@@ -42,9 +22,7 @@
 	    
           filename="armandia_boring_neckfix_light_toplevel.bin"
 	    /> <!-- other possible attributes: shaderdir, ... -->    
-	    <!--filename="armandia_boring_neckfix_dark_toplevel.bin"-->
 	    <!--filename="armandia_simquest.bin"-->
- 		 
     <PermanentMorphs>
         <PermanentMorph target="Body_NG-mesh-morpher-Body_chest_L-0" amount="4.0"/>
         <PermanentMorph target="Pull_A_-mesh-morpher-_pull01_morph_NG-0" amount="1.7"/> 
@@ -103,11 +81,11 @@
     <GlueFeetToFloor/>
   </Loader>
 
-
+<!--
   <Loader id="physicsdebug" loader="hmi.debug.PhysicsDebugVisualisationLoader" requiredloaders="physicalembodiment">
     <Placement offset="0.5 0 -0.5"/>
   </Loader>
-
+-->
   <Loader id="animationengine" 
           loader="asap.animationengine.loader.MixedAnimationEngineLoader"
           requiredloaders="mixedskeletonembodiment,physicalembodiment">
@@ -115,7 +93,7 @@
     <StartPose>
 		<RestPose type="SkeletonPose" file="Humanoids/armandia/restposes/looselyhangingarms.xml"/>
 	</StartPose>
-	<Hns resources="Humanoids/armandia/hns" filename="hns_armandia.xml"/>
+    <Hns resources="Humanoids/armandia/hns" filename="hns_armandia.xml"/>
     <HnsHandShape dir="Humanoids/shared/handshapes"/>
   </Loader>
   
@@ -125,27 +103,6 @@
     <FaceBinding basedir="" resources="Humanoids/armandia/facebinding/" filename="facebinding.xml"/>
   </Loader>
     
-  <Loader id="facelipsync" requiredloaders="faceengine" loader="asap.faceengine.loader.TimedFaceUnitLipSynchProviderLoader">
-	<MorphVisemeBinding resources="Humanoids/armandia/facebinding/" filename="ikpvisemebinding.xml"/>
-  </Loader>
-
-  <Loader id="jawlipsync" requiredloaders="animationengine" loader="asap.animationengine.loader.TimedAnimationUnitLipSynchProviderLoader">
-	<SpeechBinding basedir="" resources="Humanoids/shared/speechbinding/" filename="ikpspeechbinding.xml"/>
-  </Loader>
-
-  <Loader id="visualprosody" loader="asap.animationengine.loader.HeadVisualProsodyProviderLoader" requiredloaders="animationengine">
-	<?include resources="" file="visualprosodyprovider.xml"?>
-  </Loader>
-
-  <Loader id="ttsbinding" loader="asap.marytts5binding.loader.MaryTTSBindingLoader">
-    <PhonemeToVisemeMapping resources="Humanoids/shared/phoneme2viseme/" filename="sampade2ikp.xml"/>
-  </Loader>
-
- <Loader id="speechengine" loader="asap.speechengine.loader.SpeechEngineLoader" requiredloaders="visualprosody,facelipsync,jawlipsync,ttsbinding,guiembodiment">
-   <Voice factory="WAV_TTS" voicename="dfki-prudence-hsmm"/>	
-   <SpeechUI/>
-  </Loader>
-
   <!-- Breathingemitter that sens small breathing animations every now and then -->
   <Loader id="breathingengine" 
           loader="asap.emitterengine.loader.EmitterEngineLoader">
@@ -157,9 +114,4 @@
           loader="asap.emitterengine.loader.EmitterEngineLoader">
     <EmitterInfo class="asap.blinkemitter.BlinkEmitterInfo"/>
   </Loader>
-  
-  <!-- Engine for playing audio files, nice for sound effects (e.g., clapping) or for prerecorded speech fragments -->
-  <Loader id="audioengine" loader="asap.audioengine.loader.AudioEngineLoader"/>
-
-  
 </AsapVirtualHuman>

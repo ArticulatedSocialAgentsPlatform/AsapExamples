@@ -70,6 +70,7 @@ public class AsapRealizerDemo
         };
 
         ope = new OdePhysicsEnvironment();
+        
         WorldObjectEnvironment we = new WorldObjectEnvironment();
         MixedAnimationEnvironment mae = new MixedAnimationEnvironment();
         final AsapEnvironment ee = new AsapEnvironment();
@@ -81,7 +82,7 @@ public class AsapRealizerDemo
         we.init();
         ope.init();
         aue.init();
-        mae.init(ope, 0.02f);
+        mae.init(ope, 0.002f);
 
         ArrayList<Environment> environments = new ArrayList<Environment>();
         environments.add(hre);
