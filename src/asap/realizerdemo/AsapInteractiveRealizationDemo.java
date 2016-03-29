@@ -19,12 +19,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -38,7 +40,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 
 /**
- * Hooks up 5 buttons for interactive bml sending. Each button is linked up to the BML in the resources/bmlscripts/bmlX.xml file
+ * Hooks up 5 buttons for interactive bml sending
  * @author hvanwelbergen
  * 
  */
@@ -113,9 +115,23 @@ public class AsapInteractiveRealizationDemo
 
         java.awt.Component canvas = hre.getAWTComponent(); // after init, get canvas and add to window
         mainJFrame.add(canvas, BorderLayout.CENTER);
-        setupButtons();
-        mainJFrame.setVisible(true);
+        try
+        {
+            SwingUtilities.invokeAndWait(new Runnable()
+            {
 
+                @Override
+                public void run()
+                {
+                    setupButtons();
+                }
+            });
+        }
+        catch (InvocationTargetException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
+        mainJFrame.setVisible(true);
     }
 
     public void reset()
