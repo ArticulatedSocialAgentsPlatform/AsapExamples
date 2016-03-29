@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ import java.util.UUID;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
 
 import saiba.bml.builder.BehaviourBlockBuilder;
 import saiba.bml.feedback.BMLBlockProgressFeedback;
@@ -70,7 +72,22 @@ public class AsapRealizerDemoNoise implements BMLFeedbackListener
         System.setProperty("sun.java2d.noddraw", "true"); 
         Console.setEnabled(false);
         initAsapVH(spec);        
-        setupUI(j);
+        try
+        {
+            SwingUtilities.invokeAndWait(new Runnable()
+            {
+
+                @Override
+                public void run()
+                {
+                    setupUI(j);
+                }
+            });
+        }
+        catch (InvocationTargetException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     private void initAsapVH(String spec) throws IOException
