@@ -1,0 +1,8 @@
+<!--
+Requires emitterengine.
+
+-->
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="bmlidle" xmlns:bmlt="http://hmi.ewi.utwente.nl/bmlt" xmlns:bmla="http://www.asap-project.org/bmla">
+  <bmlt:blinkemitter id="blinkemitter1" range="0.5" avgwaitingtime="10"/>
+  <bmlt:breathingemitter id="breathingemitter1" range="2" avgwaitingtime="10"/>  
+</bml>

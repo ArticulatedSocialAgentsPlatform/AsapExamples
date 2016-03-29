@@ -1,0 +1,5 @@
+<bml id="bml5" xmlns:bmla="http://www.asap-project.org/bmla" bmla:appendAfter="bml1,bml2,bml3,bml4" xmlns="http://www.bml-initiative.org/bml/bml-1.0">
+	<speech id = "speech1">
+	  <text>I have appended some speech here.</text>
+	</speech>	
+</bml>

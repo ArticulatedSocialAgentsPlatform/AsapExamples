@@ -1,0 +1,129 @@
+<!-- Assignment 1,2,3,4 -->
+
+<bml id="bml1" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0">
+<speech id="s1">
+<text>
+  If <sync id="you"/> you are interested in the current <sync id="starstart"/>state-of-the-art<sync id="starend"/> in <sync id="listing1"/> interactive graphics, <sync id="listing2"/>Virtual and Augmented Reality, <sync id="listing3"/> artificial intelligence, <sync id="and1start"/>and<sync id="and1end"/> computer games, 
+    <sync id="thisstart"/>this summer school<sync id="thisend"/> is your place to be. <sync id="ut2"/> We invite participants to join <sync id="group"/> a group of highly motivated people for 10 days to learn about <sync id="novelstart"/>novel<sync id="novelend"/> human-computer interaction and interfaces. 
+    <sync id="ut3"/> The summer school will cover <sync id="broad"/>a broad range of topics covering principles, usage, <sync id="and2start"/>and<sync id="and2end"/> development of interactive intelligent interfaces taught <sync id="international"/>by international experts in the field.
+</text>
+</speech>
+<gaze id="gaze1" ready="s1:start" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<gaze id="g2" ready="s1:ut2" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<gaze id="g3" ready="s1:ut3" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<head id="h1" lexeme="TILT" start="s1:and1start-0.25" end="s1:and1end+0.25" amount="0.1"/>
+<head id="h2" lexeme="TILT" start="s1:and2start-0.25" end="s1:and2end+0.25" amount="0.1"/>
+<head id="h3" lexeme="NOD" start="s1:starstart-0.5" end="s1:starstart+0.25" amount="0.05"/>
+<head id="h4" lexeme="NOD" start="s1:novelstart-0.5" end="s1:novelstart+0.25" amount="0.05"/>
+<ext:faceFacs id="f4" au="1" side="BOTH" amount="0.8" start="s1:novelstart" end="s1:novelend"/>
+<ext:faceFacs id="f1" au="1" side="BOTH" amount="0.8" start="s1:starstart" end="s1:starend"/>
+<ext:faceFacs id="f2" au="1" side="BOTH" amount="0.8" start="s1:thisstart" end="s1:thisend"/>
+<gesture id="g1" lexeme="greta_deictic_self" ready="s1:you"/>
+<gesture id="gesture2" lexeme="CONDUIT" ready="s1:broad"/>
+<gesture id="beat1" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing1"/>
+<gesture id="beat2" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing2"/>
+<gesture id="beat3" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing3"/>
+<gesture id="beat4" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:and1end"/>
+<gesture id="beat5" lexeme="BEAT" mode="RIGHT_HAND" strokeStart="s1:group"/>
+<gesture id="beat6" lexeme="greta_beat2" mode="RIGHT_HAND" strokeStart="s1:international"/>
+</bml>
+
+
+<!-- Assignment 5, 7, 8 -->
+<!-- reaction time before: 5.7s -->
+<!-- reaction time now: 3s -->
+<!--
+<bml id="bml1a" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0">
+<speech id="s1">
+<text>
+  If <sync id="you"/> you are interested in the current <sync id="starstart"/>state-of-the-art<sync id="starend"/> in <sync id="listing1"/> interactive graphics, <sync id="listing2"/>Virtual and Augmented Reality, <sync id="listing3"/> artificial intelligence, <sync id="and1start"/>and<sync id="and1end"/> computer games, 
+    <sync id="thisstart"/>this summer school<sync id="thisend"/> is your place to be.    
+</text>
+</speech>
+<gaze id="gaze1" ready="s1:start" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<head id="h1" lexeme="TILT" start="s1:and1start-0.25" end="s1:and1end+0.25" amount="0.1"/>
+<head id="h3" lexeme="NOD" start="s1:starstart-0.5" end="s1:starstart+0.25" amount="0.05"/>
+
+
+<ext:faceFacs id="f1" au="1" side="BOTH" amount="0.8" start="s1:starstart" end="s1:starend"/>
+<ext:faceFacs id="f2" au="1" side="BOTH" amount="0.8" start="s1:thisstart" end="s1:thisend"/>
+<gesture id="g1" lexeme="greta_deictic_self" ready="s1:you"/>
+<gesture id="beat1" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing1"/>
+<gesture id="beat2" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing2"/>
+<gesture id="beat3" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing3"/>
+<gesture id="beat4" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:and1end"/>
+</bml>
+
+<bml id="bml1b" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmla="http://www.asap-project.org/bmla" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0" bmla:appendAfter="bml1a">
+  <speech id="s1">
+  <text>
+<sync id="ut2"/> We invite participants to join <sync id="group"/> a group of highly motivated people for 10 days to learn about <sync id="novelstart"/>novel<sync id="novelend"/> human-computer interaction and interfaces.     
+  </text>
+</speech>
+<gaze id="g2" ready="s1:ut2" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<head id="h4" lexeme="NOD" start="s1:novelstart-0.5" end="s1:novelstart+0.25" amount="0.05"/>
+<ext:faceFacs id="f4" au="1" side="BOTH" amount="0.8" start="s1:novelstart" end="s1:novelend"/>
+<gesture id="beat5" lexeme="BEAT" mode="RIGHT_HAND" strokeStart="s1:group"/>
+</bml>
+
+<bml id="bml1c" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmla="http://www.asap-project.org/bmla" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0" bmla:appendAfter="bml1b">
+  <speech id="s1">
+  <text>
+    <sync id="ut3"/> The summer school will cover a <sync id="broad"/> broad range of topics covering principles, usage, <sync id="and2start"/>and<sync id="and2end"/> development of interactive intelligent interfaces taught <sync id="international"/>by international experts in the field.
+  </text>
+  </speech>
+  <gaze id="g3" ready="s1:ut3" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+  <head id="h2" lexeme="TILT" start="s1:and2start-0.25" end="s1:and2end+0.25" amount="0.1"/>
+  <gesture id="beat6" lexeme="greta_beat2" mode="RIGHT_HAND" strokeStart="s1:international"/>
+  <gesture id="gesture2" lexeme="CONDUIT" ready="s1:broad"/>
+</bml>
+
+-->
+<!-- Assignment 6 -->
+<!-- reaction time: 0ms -->
+<!--
+<bml id="bml1a" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmla="http://www.asap-project.org/bmla" bmla:preplan="true" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0">
+<speech id="s1">
+<text>
+  If <sync id="you"/> you are interested in the current <sync id="starstart"/>state-of-the-art<sync id="starend"/> in <sync id="listing1"/> interactive graphics, <sync id="listing2"/>Virtual and Augmented Reality, <sync id="listing3"/> artificial intelligence, <sync id="and1start"/>and<sync id="and1end"/> computer games, 
+    <sync id="thisstart"/>this summer school<sync id="thisend"/> is your place to be.    
+</text>
+</speech>
+<gaze id="gaze1" ready="s1:start" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<head id="h1" lexeme="TILT" start="s1:and1start-0.25" end="s1:and1end+0.25" amount="0.1"/>
+<head id="h3" lexeme="NOD" start="s1:starstart-0.5" end="s1:starstart+0.25" amount="0.05"/>
+
+
+<ext:faceFacs id="f1" au="1" side="BOTH" amount="0.8" start="s1:starstart" end="s1:starend"/>
+<ext:faceFacs id="f2" au="1" side="BOTH" amount="0.8" start="s1:thisstart" end="s1:thisend"/>
+<gesture id="g1" lexeme="greta_deictic_self" ready="s1:you"/>
+<gesture id="beat1" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing1"/>
+<gesture id="beat2" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing2"/>
+<gesture id="beat3" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:listing3"/>
+<gesture id="beat4" lexeme="greta_beat4" mode="RIGHT_HAND" strokeStart="s1:and1end"/>
+</bml>
+
+<bml id="bml1b" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmla="http://www.asap-project.org/bmla" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0" bmla:appendAfter="bml1a">
+  <speech id="s1">
+  <text>
+<sync id="ut2"/> We invite participants to join <sync id="group"/> a group of highly motivated people for 10 days to learn about <sync id="novelstart"/>novel<sync id="novelend"/> human-computer interaction and interfaces.     
+  </text>
+</speech>
+<gaze id="g2" ready="s1:ut2" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+<head id="h4" lexeme="NOD" start="s1:novelstart-0.5" end="s1:novelstart+0.25" amount="0.05"/>
+<ext:faceFacs id="f4" au="1" side="BOTH" amount="0.8" start="s1:novelstart" end="s1:novelend"/>
+<gesture id="beat5" lexeme="BEAT" mode="RIGHT_HAND" strokeStart="s1:group"/>
+</bml>
+
+<bml id="bml1c" xmlns="http://www.bml-initiative.org/bml/bml-1.0" xmlns:bmla="http://www.asap-project.org/bmla" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0" bmla:appendAfter="bml1b">
+  <speech id="s1">
+  <text>
+    <sync id="ut3"/> The summer school will cover a <sync id="broad"/> broad range of topics covering principles, usage, <sync id="and2start"/>and<sync id="and2end"/> development of interactive intelligent interfaces taught <sync id="international"/>by international experts in the field.
+  </text>
+  </speech>
+  <gaze id="g3" ready="s1:ut3" target="camera" offsetDirection="RIGHT" offsetAngle="30" influence="EYES"/>
+  <head id="h2" lexeme="TILT" start="s1:and2start-0.25" end="s1:and2end+0.25" amount="0.1"/>
+  <gesture id="beat6" lexeme="greta_beat2" mode="RIGHT_HAND" strokeStart="s1:international"/>
+  <gesture id="gesture2" lexeme="CONDUIT" ready="s1:broad"/>
+</bml>
+-->
