@@ -49,7 +49,7 @@ import com.google.common.collect.ImmutableSet;
  * Demo in which speech is temporarily interrupted for an announcement and then resumed. 
  * @author Herwin
  */
-public class AsapRealizerDemoNoise implements BMLFeedbackListener
+public class NoiseDemo implements BMLFeedbackListener
 {
     private HmiRenderEnvironment hre;
     private OdePhysicsEnvironment ope;
@@ -67,7 +67,7 @@ public class AsapRealizerDemoNoise implements BMLFeedbackListener
     private int continueFrom = 0;
     private String pauseId;
     
-    public AsapRealizerDemoNoise(JFrame j, String spec) throws IOException
+    public NoiseDemo(JFrame j, String spec) throws IOException
     {
         System.setProperty("sun.java2d.noddraw", "true"); 
         Console.setEnabled(false);
@@ -418,7 +418,7 @@ public class AsapRealizerDemoNoise implements BMLFeedbackListener
 
     public static void main(String[] args) throws IOException
     {
-        AsapRealizerDemoNoise demo = new AsapRealizerDemoNoise(new JFrame("AsapRealizer noise demo"), "asaparmandia_vp_nogui.xml");
+        NoiseDemo demo = new NoiseDemo(new JFrame("AsapRealizer noise demo"), "asaparmandia_vp_nogui.xml");
         demo.startClocks();
     }
 }
