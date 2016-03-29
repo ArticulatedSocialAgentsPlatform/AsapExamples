@@ -74,15 +74,8 @@ public class NoiseDemo implements BMLFeedbackListener
         initAsapVH(spec);        
         try
         {
-            SwingUtilities.invokeAndWait(new Runnable()
-            {
-
-                @Override
-                public void run()
-                {
-                    setupUI(j);
-                }
-            });
+            
+            SwingUtilities.invokeAndWait(()->setupUI(j));                
         }
         catch (InvocationTargetException | InterruptedException e)
         {

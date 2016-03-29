@@ -55,7 +55,18 @@ public class InterruptionDemo implements BMLFeedbackListener
         AudioEnvironment aue = new AudioEnvironment("LJWGL_JOAL");
         WorldObjectEnvironment we = new WorldObjectEnvironment();
 
-        initUI(jf);
+        try
+        {
+            SwingUtilities.invokeAndWait(() -> initUI(jf));
+        }
+        catch (InterruptedException e)
+        {
+            Thread.interrupted();
+        }
+        catch (InvocationTargetException e)
+        {
+            throw new RuntimeException(e);
+        }
 
         hre.init(); // canvas does not exist until init was called
         ope.init();
@@ -85,7 +96,7 @@ public class InterruptionDemo implements BMLFeedbackListener
 
         vHuman = ee.loadVirtualHuman("armandia", "", "asaparmandia_vp_nogui.xml", "armandia - interruption demo");
         vHuman.getRealizerPort().addListeners(this);
-        
+
         java.awt.Component canvas = hre.getAWTComponent(); // after init, get canvas and add to window
         jf.add(canvas);
         jf.setVisible(true);
@@ -93,69 +104,55 @@ public class InterruptionDemo implements BMLFeedbackListener
 
     private void initUI(final JFrame jf)
     {
-        try
+
+        jf.setTitle("Test new HmiEnvironment");
+        jf.setSize(1000, 600);
+
+        jf.addWindowListener(new java.awt.event.WindowAdapter()
         {
-            SwingUtilities.invokeAndWait(new Runnable()
+            public void windowClosing(WindowEvent winEvt)
             {
-                @Override
-                public void run()
-                {
-                    jf.setTitle("Test new HmiEnvironment");
-                    jf.setSize(1000, 600);
-                    
-                    jf.addWindowListener(new java.awt.event.WindowAdapter() {
-                        public void windowClosing(WindowEvent winEvt) {
-                            System.exit(0); 
-                        }
-                    });
-                    
-                    JMenuBar mb = new JMenuBar();
+                System.exit(0);
+            }
+        });
 
-                    JButton playButton = new JButton("Play");
-                    playButton.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent arg0)
-                        {
-                            play();
-                        }
-                    });
-                    mb.add(playButton);
+        JMenuBar mb = new JMenuBar();
 
-                    JButton interruptButton = new JButton("Interrupt");
-                    interruptButton.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent arg0)
-                        {
-                            interrupt();
-                        }
-                    });
-                    mb.add(interruptButton);
-
-                    JButton continueButton = new JButton("Continue");
-                    continueButton.addActionListener(new ActionListener()
-                    {
-                        @Override
-                        public void actionPerformed(ActionEvent arg0)
-                        {
-                            continueCall();
-                        }
-                    });
-                    mb.add(continueButton);
-
-                    jf.setJMenuBar(mb);
-                }
-            });
-        }
-        catch (InterruptedException e)
+        JButton playButton = new JButton("Play");
+        playButton.addActionListener(new ActionListener()
         {
-            Thread.interrupted();
-        }
-        catch (InvocationTargetException e)
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                play();
+            }
+        });
+        mb.add(playButton);
+
+        JButton interruptButton = new JButton("Interrupt");
+        interruptButton.addActionListener(new ActionListener()
         {
-            throw new RuntimeException(e);
-        }
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                interrupt();
+            }
+        });
+        mb.add(interruptButton);
+
+        JButton continueButton = new JButton("Continue");
+        continueButton.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                continueCall();
+            }
+        });
+        mb.add(continueButton);
+
+        jf.setJMenuBar(mb);
+
     }
 
     private String readFile(String filename) throws IOException
@@ -184,13 +181,9 @@ public class InterruptionDemo implements BMLFeedbackListener
 
     public void interrupt()
     {
-        String str = new BehaviourBlockBuilder()
-            .id("yieldturn")
-            .addBMLBehaviorAttributeExtension(new BMLABMLBehaviorAttributesBuilder()
-                .addToInterrupt("bml1")
-                .build())
-            .build()
-            .toBMLString();        
+        String str = new BehaviourBlockBuilder().id("yieldturn")
+                .addBMLBehaviorAttributeExtension(new BMLABMLBehaviorAttributesBuilder().addToInterrupt("bml1").build()).build()
+                .toBMLString();
         vHuman.getRealizerPort().performBML(str);
     }
 
@@ -225,11 +218,11 @@ public class InterruptionDemo implements BMLFeedbackListener
         hre.startRenderClock();
         ope.startPhysicsClock();
     }
-    
+
     public static void main(String[] arg) throws IOException, InterruptedException, InvocationTargetException
     {
         InterruptionDemo demo = new InterruptionDemo(new JFrame());
-        demo.startClocks();        
+        demo.startClocks();
     }
 
     @Override

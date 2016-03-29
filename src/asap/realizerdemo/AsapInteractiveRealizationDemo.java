@@ -117,15 +117,7 @@ public class AsapInteractiveRealizationDemo
         mainJFrame.add(canvas, BorderLayout.CENTER);
         try
         {
-            SwingUtilities.invokeAndWait(new Runnable()
-            {
-
-                @Override
-                public void run()
-                {
-                    setupButtons();
-                }
-            });
+            SwingUtilities.invokeAndWait(()->setupButtons());
         }
         catch (InvocationTargetException | InterruptedException e)
         {

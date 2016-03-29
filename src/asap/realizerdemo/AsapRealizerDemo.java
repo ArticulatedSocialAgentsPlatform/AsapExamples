@@ -70,7 +70,7 @@ public class AsapRealizerDemo
         };
 
         ope = new OdePhysicsEnvironment();
-        
+
         WorldObjectEnvironment we = new WorldObjectEnvironment();
         MixedAnimationEnvironment mae = new MixedAnimationEnvironment();
         final AsapEnvironment ee = new AsapEnvironment();
@@ -94,23 +94,23 @@ public class AsapRealizerDemo
         environments.add(jce);
 
         ee.init(environments, ope.getPhysicsClock()); // if no physics, just use renderclock here!
-        
+
         // this clock method drives the engines in ee. if no physics, then register ee as a listener at the render clock!
         ope.addPrePhysicsCopyListener(ee);
-        
+
         // hre.getRenderClock().addClockListener(ee);
 
         hre.loadCheckerBoardGround("ground", 0.5f, 0f);
         hre.setBackground(0.2f, 0.2f, 0.2f);
 
-        hre.loadBox("bluebox", new float[] { 0.05f, 0.05f, 0.05f }, RenderStyle.FILL, new float[] { 0.2f, 0.2f, 1, 1 }, new float[] { 0.2f,
-                0.2f, 1, 1 }, new float[] { 0.2f, 0.2f, 1, 0 }, new float[] { 0.2f, 0.2f, 1, 1 });
+        hre.loadBox("bluebox", new float[] { 0.05f, 0.05f, 0.05f }, RenderStyle.FILL, new float[] { 0.2f, 0.2f, 1, 1 },
+                new float[] { 0.2f, 0.2f, 1, 1 }, new float[] { 0.2f, 0.2f, 1, 0 }, new float[] { 0.2f, 0.2f, 1, 1 });
         VJoint boxJoint = hre.getObjectRootJoint("bluebox");
         boxJoint.setTranslation(0.1f, 1.5f, 0.4f);
         we.getWorldObjectManager().addWorldObject("bluebox", new VJointWorldObject(boxJoint));
 
-        hre.loadBox("redbox", new float[] { 0.05f, 0.05f, 0.05f }, RenderStyle.FILL, new float[] { 1f, 0.2f, 0.2f, 1 }, new float[] { 1f,
-                0.2f, 0.2f, 1 }, new float[] { 1f, 0.2f, 0.2f, 0 }, new float[] { 1f, 0.2f, 0.2f, 1 });
+        hre.loadBox("redbox", new float[] { 0.05f, 0.05f, 0.05f }, RenderStyle.FILL, new float[] { 1f, 0.2f, 0.2f, 1 },
+                new float[] { 1f, 0.2f, 0.2f, 1 }, new float[] { 1f, 0.2f, 0.2f, 0 }, new float[] { 1f, 0.2f, 0.2f, 1 });
         VJoint rboxJoint = hre.getObjectRootJoint("redbox");
         rboxJoint.setTranslation(0.6f, 1.5f, 0.4f);
         we.getWorldObjectManager().addWorldObject("redbox", new VJointWorldObject(rboxJoint));
@@ -152,20 +152,14 @@ public class AsapRealizerDemo
         final JComponentEnvironment jce = new JComponentEnvironment();
         try
         {
-            SwingUtilities.invokeAndWait(new Runnable()
-            {
+            SwingUtilities.invokeAndWait(() -> {
+                mainJFrame.setLayout(new BorderLayout());
 
-                @Override
-                public void run()
-                {
-                    mainJFrame.setLayout(new BorderLayout());
-
-                    JPanel jPanel = new JPanel();
-                    jPanel.setPreferredSize(new Dimension(400, 40));
-                    jPanel.setLayout(new GridLayout(1, 1));
-                    jce.registerComponent("textpanel", jPanel);
-                    mainJFrame.add(jPanel, BorderLayout.SOUTH);
-                }
+                JPanel jPanel = new JPanel();
+                jPanel.setPreferredSize(new Dimension(400, 40));
+                jPanel.setLayout(new GridLayout(1, 1));
+                jce.registerComponent("textpanel", jPanel);
+                mainJFrame.add(jPanel, BorderLayout.SOUTH);
             });
         }
         catch (InvocationTargetException e)
@@ -188,10 +182,10 @@ public class AsapRealizerDemo
     public static void main(String[] args) throws IOException
     {
         // examples for conversational animation seminar:
-        //String spec = "asaparmandia_motionsamples.xml";
-        
-        //visual prosody
-        String spec = "asaparmandia_vp.xml";        
+        // String spec = "asaparmandia_motionsamples.xml";
+
+        // visual prosody
+        String spec = "asaparmandia_vp.xml";
 
         if (args.length == 1)
         {

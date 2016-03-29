@@ -16,11 +16,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
 
 import saiba.bml.builder.BehaviourBlockBuilder;
 import asap.bml.ext.bmla.builder.BMLABMLBehaviorAttributesBuilder;
@@ -56,7 +58,14 @@ public class TurnKeepDemo implements KeyListener
     public TurnKeepDemo(JFrame j) throws IOException
     {
         initRealizer();
-        setupUI(j);
+        try
+        {
+            SwingUtilities.invokeAndWait(()->setupUI(j));            
+        }
+        catch (InvocationTargetException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
     
     private void setupUI(JFrame j)
