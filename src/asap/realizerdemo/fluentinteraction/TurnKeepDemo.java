@@ -93,6 +93,7 @@ public class TurnKeepDemo implements KeyListener
         j.setJMenuBar(menuBar);
         
         j.add(hre.getAWTComponent());
+        j.addKeyListener(this);
         hre.getAWTComponent().addKeyListener(this);
         j.setSize(new Dimension(1000,600));
         j.setVisible(true);

@@ -13,12 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import saiba.bml.builder.BehaviourBlockBuilder;
 import asap.bml.ext.bmlt.BMLTInfo;
@@ -52,7 +54,14 @@ public class SpaceBarTempoAnticipationDemo implements ClockListener
         System.setProperty("sun.java2d.noddraw", "true");
         initRealizer();
         initAnticipator(0);        
-        initUI(j);
+        try
+        {
+            SwingUtilities.invokeAndWait(()->initUI(j));            
+        }
+        catch (InvocationTargetException | InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }     
     }
 
     private void initRealizer() throws IOException
@@ -115,6 +124,7 @@ public class SpaceBarTempoAnticipationDemo implements ClockListener
         });
         JMenuBar menuBar = new JMenuBar();
         menuBar.addKeyListener(sbta);
+        j.addKeyListener(sbta);
         JPanel pPressed = new JPanel();
         JPanel pPredict = new JPanel();
         tempoViz = new JPanelSpaceBarTempoAnticipatorVisualization(pPressed, pPredict, sbta, sbta);
@@ -158,7 +168,7 @@ public class SpaceBarTempoAnticipationDemo implements ClockListener
         tempoViz.update(currentTime);
     }
 
-    private static String getConductBML()
+    private String getConductBML()
     {
         BehaviourBlockBuilder builder = new BehaviourBlockBuilder();
         builder.id("bml1").addBehaviour(new BMLTControllerBehaviourBuilder("bml1", "balance1", "BalanceController").build());
@@ -180,11 +190,16 @@ public class SpaceBarTempoAnticipationDemo implements ClockListener
         ope.startPhysicsClock();
     }
 
+    public void startConduct()
+    {
+        realizerPort.performBML(getConductBML());
+    }
+    
     public static void main(String[] arg) throws Exception
     {
         SpaceBarTempoAnticipationDemo env = new SpaceBarTempoAnticipationDemo();
         env.init(new JFrame());
         env.startClocks();
-        env.realizerPort.performBML(getConductBML());
+        env.startConduct();
     }
 }
