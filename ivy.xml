@@ -67,13 +67,14 @@
 	
 	
 	<dependency org="marytts" name="voice-dfki-prudence-hsmm"       rev="latest.release"  />
+	<dependency org="marytts" name="voice-dfki-poppy-hsmm"       rev="latest.release"  />
 	<dependency org="marytts" name="voice-dfki-pavoque-neutral-hsmm"       rev="latest.release"  />
 	<dependency org="marytts" name="voice-bits1-hsmm"       rev="latest.release"  />	
     <dependency org="marytts" name="voice-cmu-bdl-hsmm"       rev="latest.release"  />
 	<dependency org="marytts" name="voice-bits3-hsmm"       rev="latest.release"  />
 	<!--
 	<dependency org="marytts" name="voice-dfki-poppy"       rev="latest.release"  />
-	<dependency org="marytts" name="voice-dfki-poppy-hsmm"       rev="latest.release"  />
+	
 	<dependency org="marytts" name="voice-dfki-spike"       rev="latest.release"  />
 	<dependency org="marytts" name="voice-dfki-spike-hsmm"       rev="latest.release"  />
 	<dependency org="marytts" name="voice-dfki-obadiah"       rev="latest.release"  />

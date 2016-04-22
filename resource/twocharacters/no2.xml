@@ -1,0 +1,6 @@
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="no2">
+  <speech id="speech1">
+  	<text>No.</text>
+  </speech>
+  <head id="behavior1" lexeme="SHAKE" amount="0.2" repetition="1" start="0" end="0.8"/>
+</bml>

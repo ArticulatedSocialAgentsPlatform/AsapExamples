@@ -1,0 +1,5 @@
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="bmlwhats">
+  <speech id="speech1">
+  	<text>What's the matter with you?</text>
+  </speech>
+</bml>

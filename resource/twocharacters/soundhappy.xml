@@ -1,0 +1,6 @@
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0"  id="bmlhappy" xmlns:bmla="http://www.asap-project.org/bmla" bmla:chunkAfter="bmlwhats">
+  <speech id="speech1">
+    <text>You sound <sync id="happy"/>happy.</text>
+  </speech>
+  <faceLexeme id="smile1" lexeme="smile" amount="0.8" start="speech1:happy-0.5" end="speech1:end+0.3"/>
+</bml>
