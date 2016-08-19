@@ -44,7 +44,7 @@ public class SinusMoveLipSyncProvider implements LipSynchProvider
         
         SinusWaveFU fu = new SinusWaveFU();
         fu.setTargets(desc.getMorphNames());
-        fu = fu.copy(faceController, null, null);
+        fu = fu.copy(faceController, null, null, null);
         TimedFaceUnit tfu = fu.createTFU(NullFeedbackManager.getInstance(), bbPeg, speechUnit.getBMLId(), speechUnit.getId(), pegBoard);
         TimePeg startPeg = new OffsetPeg(speechUnit.getTimePeg("start"), 0);
         TimePeg endPeg = new OffsetPeg(speechUnit.getTimePeg("end"), duration);
