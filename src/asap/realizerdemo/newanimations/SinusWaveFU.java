@@ -2,6 +2,7 @@ package asap.realizerdemo.newanimations;
 
 import hmi.faceanimation.FaceController;
 import hmi.faceanimation.converters.EmotionConverter;
+import hmi.faceanimation.converters.FACS2MorphConverter;
 import hmi.faceanimation.converters.FACSConverter;
 import hmi.util.StringUtil;
 
@@ -46,7 +47,8 @@ public class SinusWaveFU implements FaceUnit
     @Override
     public void play(double t) throws MUPlayException
     {
-        float newMorphedWeight = intensity*(float)Math.sin(t*repeats*2*Math.PI);
+        // JK: Added phase shift to start with 0 and changed amplitude to between 0 and 1 instead of -1 and 1
+        float newMorphedWeight = 0.5f+(0.5f*intensity)*(float)Math.sin(t*repeats*2*Math.PI+3*Math.PI/2.0);
         float[] newWeights = new float[morphTargets.length];
         for (int i = 0; i < newWeights.length; i++)
             newWeights[i] = newMorphedWeight;
@@ -172,7 +174,7 @@ public class SinusWaveFU implements FaceUnit
     }
 
     @Override
-    public SinusWaveFU copy(FaceController fc, FACSConverter fconv, EmotionConverter econv)
+    public SinusWaveFU copy(FaceController fc, FACSConverter fconv, EmotionConverter econv, FACS2MorphConverter f2mconv)
     {
         SinusWaveFU fu = new SinusWaveFU();
         fu.setFaceController(fc);
